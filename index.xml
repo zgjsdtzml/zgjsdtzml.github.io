@@ -1,62 +1,79 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>zml 个人博客</title>
+    <title>个人博客</title>
     <link>/</link>
-    <description>Recent content on zml 个人博客</description>
+    <description>Recent content on 个人博客</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en</language>
     <copyright>&amp;copy; 2023. All rights reserved.</copyright>
-    <lastBuildDate>Sun, 28 Sep 2014 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Nov 2023 00:00:00 +0000</lastBuildDate>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>记录下网站搭建过程</title>
+      <link>/post/%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B/</link>
+      <pubDate>Mon, 13 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>/post/%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B/</guid>
+      <description>Move static content to static hugo new site zml_blog
+cd zml_blog
+git init
+git submodule add git@github.com:yoshiharuyamashita/blackburn.git themes/blackburn
+theme文件复制并替换
+除了git.ignore外，把D:\2 work software\hugo\my_blog\zml_blog\themes\blackburn下的文件复制到根目录 zml_blog 下， 复制并替换 复制theme的配置文件
+把config文件 D:\2 work software\hugo\my_blog\zml_blog\themes\blackburn\exampleSite 内容 复制到D:\2 work software\hugo\my_blog\zml_blog\content 下 注意最终生效的配置文件为hugo.toml
+复制theme配置页面
+把page文件D:\2 work software\hugo\my_blog\zml_blog\themes\blackburn\exampleSite\content 内容 复制到toml.config 重新运行
+hugo server add/update博客文章
+你只需要按照Markdown 的格式编写自己的文章，让后将写好的文章放在zml_blog/content/posts，hugo 就会读取到这片文章，并将这片文章展示在比的博客中。 </description>
+    </item>
+    <item>
       <title>Creating a New Theme</title>
-      <link>/post/creating-a-new-theme.html</link>
+      <link>/post/creating-a-new-theme/</link>
       <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
-      <guid>/post/creating-a-new-theme.html</guid>
+      <guid>/post/creating-a-new-theme/</guid>
       <description>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&amp;rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&amp;rsquo;t cover using CSS to style your theme.
 We&amp;rsquo;ll start with creating a new site with a very basic template.</description>
     </item>
     <item>
       <title>Migrate to Hugo from Jekyll</title>
-      <link>/post/migrate-from-jekyll.html</link>
+      <link>/post/migrate-from-jekyll/</link>
       <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
-      <guid>/post/migrate-from-jekyll.html</guid>
+      <guid>/post/migrate-from-jekyll/</guid>
       <description>Move static content to static Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output. Hugo keeps all static content under static. You should therefore move it all there. With Jekyll, something that looked like
 ▾ &amp;lt;root&amp;gt;/▾ images/logo.pngshould become
 ▾ &amp;lt;root&amp;gt;/▾ static/▾ images/logo.pngAdditionally, you&amp;rsquo;ll want any files that should reside at the root (such as CNAME) to be moved to static.</description>
     </item>
     <item>
-      <title>About</title>
-      <link>/about.html</link>
-      <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>/about.html</guid>
-      <description>Hugo is a static site engine written in Go.
-It makes use of a variety of open source projects including:
-Cobra Viper J Walter Weatherman Cast Learn more and contribute on GitHub.
-Setup Some fun facts about Hugo:
-Built in Go Loosely inspired by Jekyll Primarily developed by spf13 on the train while commuting to and from Manhattan. Coded in Vim using spf13-vim Have questions or suggestions? Feel free to open an issue on GitHub or ask me on Twitter.</description>
+      <title>关于</title>
+      <link>/about/</link>
+      <pubDate>Sun, 09 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>/about/</guid>
+      <description>斜杠coder的自留地 GitHub.
+喜欢开源、记录生活和成长、不定期更新如下内容:
+代码coding
+历史、文学、经济、社会、宗教等探索
+运动分享（包括不限于爬山和马拉松）</description>
     </item>
     <item>
       <title>Contact</title>
-      <link>/contact.html</link>
+      <link>/contact/</link>
       <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>/contact.html</guid>
+      <guid>/contact/</guid>
       <description> &amp;lt;div class=&amp;quot;pure-u-1 pure-u-md-1-3&amp;quot;&amp;gt;&amp;lt;label for=&amp;quot;last-name&amp;quot;&amp;gt;Last Name&amp;lt;/label&amp;gt;&amp;lt;input id=&amp;quot;last-name&amp;quot; class=&amp;quot;pure-u-23-24&amp;quot; type=&amp;quot;text&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;pure-u-1 pure-u-md-1-3&amp;quot;&amp;gt;&amp;lt;label for=&amp;quot;email&amp;quot;&amp;gt;E-Mail&amp;lt;/label&amp;gt;&amp;lt;input id=&amp;quot;email&amp;quot; class=&amp;quot;pure-u-23-24&amp;quot; type=&amp;quot;email&amp;quot; required&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;pure-u-1 pure-u-md-1-3&amp;quot;&amp;gt;&amp;lt;label for=&amp;quot;city&amp;quot;&amp;gt;City&amp;lt;/label&amp;gt;&amp;lt;input id=&amp;quot;city&amp;quot; class=&amp;quot;pure-u-23-24&amp;quot; type=&amp;quot;text&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;pure-u-1 pure-u-md-1-3&amp;quot;&amp;gt;&amp;lt;label for=&amp;quot;state&amp;quot;&amp;gt;State&amp;lt;/label&amp;gt;&amp;lt;select id=&amp;quot;state&amp;quot; class=&amp;quot;pure-input-1-2&amp;quot;&amp;gt;&amp;lt;option&amp;gt;AL&amp;lt;/option&amp;gt;&amp;lt;option&amp;gt;CA&amp;lt;/option&amp;gt;&amp;lt;option&amp;gt;IL&amp;lt;/option&amp;gt;&amp;lt;/select&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;fieldset class=&amp;quot;pure-group&amp;quot;&amp;gt;&amp;lt;input type=&amp;quot;text&amp;quot; class=&amp;quot;pure-input-1-2&amp;quot; placeholder=&amp;quot;A title&amp;quot;&amp;gt;&amp;lt;textarea class=&amp;quot;pure-input-1-2&amp;quot; placeholder=&amp;quot;Your message&amp;quot;&amp;gt;&amp;lt;/textarea&amp;gt;&amp;lt;/fieldset&amp;gt;&amp;lt;button type=&amp;quot;submit&amp;quot; class=&amp;quot;pure-button pure-button-primary&amp;quot;&amp;gt;Send&amp;lt;/button&amp;gt;</description>
     </item>
     <item>
       <title>(Hu)go Template Primer</title>
-      <link>/post/goisforlovers.html</link>
+      <link>/post/goisforlovers/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>/post/goisforlovers.html</guid>
+      <guid>/post/goisforlovers/</guid>
       <description>Hugo uses the excellent go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in go templates.
 This document is a brief primer on using go templates.</description>
     </item>
     <item>
       <title>Getting Started with Hugo</title>
-      <link>/post/hugoisforlovers.html</link>
+      <link>/post/hugoisforlovers/</link>
       <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>/post/hugoisforlovers.html</guid>
+      <guid>/post/hugoisforlovers/</guid>
       <description>Step 1. Install Hugo Goto hugo releases and download the appropriate version for your os and architecture.
 Save it somewhere specific as we will be using it in the next step.
 More complete instructions are available at installing hugo
