@@ -58,7 +58,7 @@ article > footer {
 #menu .brand {
   font-family: Raleway;
   font-weight: bold;
-  font-size: 1em;
+  font-size: 1.1em;
   letter-spacing: 0.1em;
   text-transform: none;
   background: transparent;
@@ -67,7 +67,7 @@ article > footer {
 }
 
 #menu .pure-menu {
-  font-size: 5.9em;
+  font-size: 1.2em;
 }
 
 #menu .pure-menu ul.pure-menu-children {
