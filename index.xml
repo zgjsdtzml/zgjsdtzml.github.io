@@ -7,24 +7,23 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; 2023. All rights reserved.</copyright>
-    <lastBuildDate>Mon, 13 Nov 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Nov 2023 16:29:02 +0000</lastBuildDate>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>记录下网站搭建过程</title>
+      <title>基于hugo搭建blog</title>
       <link>/post/%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B/</link>
-      <pubDate>Mon, 13 Nov 2023 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 13 Nov 2023 16:29:02 +0000</pubDate>
       <guid>/post/%E6%90%AD%E5%BB%BA%E8%BF%87%E7%A8%8B/</guid>
-      <description>Move static content to static hugo new site zml_blog
-cd zml_blog
-git init
-git submodule add git@github.com:yoshiharuyamashita/blackburn.git themes/blackburn
-theme文件复制并替换
-除了git.ignore外，把D:\2 work software\hugo\my_blog\zml_blog\themes\blackburn下的文件复制到根目录 zml_blog 下， 复制并替换 复制theme的配置文件
-把config文件 D:\2 work software\hugo\my_blog\zml_blog\themes\blackburn\exampleSite 内容 复制到D:\2 work software\hugo\my_blog\zml_blog\content 下 注意最终生效的配置文件为hugo.toml
+      <description>Step 1. 准备条件 git下载 hugo下载 Step 2. 搭建过程 环境准备
+下载hugo window版本 配置环境变量到Path 创建hugo项目 （zml_blog）
+hugo new site zml_blog cd zml_blog git init git拉取某个选定的theme皮肤
+这里选定blackburn（参考博客和UI） git submodule add git@github.com:yoshiharuyamashita/blackburn.git themes/blackburn theme文件复制并替换
+除了git.ignore外把D:\2 work software\hugo\my_blog\zml_blog\themes\blackburn下文件复制到根目录 zml_blog下并替换 复制theme的配置文件
+把config文件 D:\2 work software\hugo\my_blog\zml_blog\themes\blackburn\exampleSite内容复制到D:\2 work software\hugo\my_blog\zml_blog\content下 注意最终生效的配置文件为hugo.toml
 复制theme配置页面
-把page文件D:\2 work software\hugo\my_blog\zml_blog\themes\blackburn\exampleSite\content 内容 复制到toml.config 重新运行
-hugo server add/update博客文章
-你只需要按照Markdown 的格式编写自己的文章，让后将写好的文章放在zml_blog/content/posts，hugo 就会读取到这片文章，并将这片文章展示在比的博客中。 </description>
+把page文件D:\2 work software\hugo\my_blog\zml_blog\themes\blackburn\exampleSite\content内容复制到toml.config 重新运行
+hugo server 编译生成public并上传到git
+D:\2 work software\hugo\my_blog\zml_blog\public下文件复制到D:\2 work software\hugo\my_blog\git_pages\zgjsdtzml.github.io下git add.git commit -m &amp;#39;xxx&amp;#39;git push add/update博客文章</description>
     </item>
     <item>
       <title>Creating a New Theme</title>
