@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on 个人博客</title>
-    <link>/post/</link>
-    <description>Recent content in Posts on 个人博客</description>
+    <title>sso on 个人博客</title>
+    <link>/tags/sso/</link>
+    <description>Recent content in sso on 个人博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; 2023. All rights reserved.</copyright>
     <lastBuildDate>Wed, 15 Nov 2023 20:21:00 +0000</lastBuildDate>
-    <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/sso/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>cookie、session和sso</title>
       <link>/post/cookiesession%E5%92%8Csso/</link>
@@ -24,79 +24,6 @@
 单点登录四大主流协议： CAS、OAuth、OpenID Connect、SAML方案
 单点登录有很多实现方案，最主流的还是基于CAS的方案。设计一套支持单点登录的鉴权认证系统，所有系统都基于一套鉴权系统进行登录，并且可以实现各个系统之间的互信和跳转。CAS架构的核心是需要搭建一个CAS Server，该服务独立部署，拥有独立三级域名，主要负责对用户的认证工作。他主要组成包括WEB前端提供登录页面，票据模块，认证模块。
 在 B/S 系统中，登录功能通常都是基于 Cookie 来实现的。当用户登录成功后，一般会将登录状态记录到 Session 中，或者是给用户签发一个 Token，无论哪一种方式，都需要在客户端保存一些信息（Session ID 或 Token ），并要求客户端在之后的每次请求中携带它们。在这样的场景下，使用 Cookie 无疑是最方便的，因此我们一般都会将 Session 的 ID 或 Token 保存到 Cookie 中，当服务端收到请求后，通过验证 Cookie 中的信息来判断用户是否登录 。单点登录（Single Sign On, SSO）是指在同一帐号平台下的多个应用系统中，用户只需登录一次，即可访问所有相互信任的应用系统。举例来说，百度贴吧和百度地图是百度公司旗下的两个不同的应用系统，如果用户在百度贴吧登录过之后，当他访问百度地图时无需再次登录，那么就说明百度贴吧和百度地图之间实现了单点登录。单点登录的本质就是在多个应用系统中共享登录状态。如果用户的登录状态是记录在 Session 中的，要实现共享登录状态，就要先共享 Session，比如可以将 Session 序列化到 Redis 中，让多个应用系统共享同一个 Redis，直接读取 Redis 来获取 Session。当然仅此是不够的，因为不同的应用系统有着不同的域名，尽管 Session 共享了，但是由于 Session ID 是往往保存在浏览器 Cookie 中的，因此存在作用域的限制，无法跨域名传递，也就是说当用户在 http://app1.</description>
-    </item>
-    <item>
-      <title>influxdb介绍</title>
-      <link>/post/influxdb/</link>
-      <pubDate>Tue, 14 Nov 2023 16:00:02 +0000</pubDate>
-      <guid>/post/influxdb/</guid>
-      <description>1. 介绍 git下载、hugo下载
-go写的，场景：适合 海量时许数据的插入和查询的场景（ 注意：删除和更新 支持很少）
-监控告警 iot物联网设备数据采集 官方有OSS单机开源版、官方集群版闭源收费，走商业路线。
-主流版本有1.X 和 2.X 1.X以1.8为主流
-InfluxDB 2.0 正式版本，该版本又分为两个系列，云模式的 InfluxDB Cloud 和独立部署的 InfluxDB OSS
-2.x的区别
-1整合了TICK 四个组件，分别对应Telegraf数据采集，InfluxDB数据存储，Chronograf WebUI数据可视化，Kapacitor 告警
-权限增强，支持token读写数据
-增加查询语言 Flux语法
-性能
-影响因素 本身机器硬件参数（32G内存 16核CPU标准版） 数据量、网络带宽 influxdb版本 1.8.10、mearsurement个数、field个数、tag个数 举例来说，基本的服务器配置 32G内存 16核，支持每s几W的写入 没什么问题，正常的查询在1-20ms之内
-网上测试参考8G内存 2核cpu 最大的吞吐量为每秒写入60万条数据（3个字段，1个索引） 读取性能 2ms/条环卫云项目参考 32G 16核cpu 1000Mbps的带宽平均吃 8G内存 600% cpu 每秒写入 2-3K条数据（50个字段、2-3个索引） 功能性
-HTTP协议的API 通过数据库本身的聚合函数 retention policy：数据存储策略（默认策略为autogen）InfluxDB没有删除数据操作，规定数据的保留时间达到清除数据的目的 底层时间戳为纳秒， 存储用的是utc时间戳（自1970年1月1日起的相对时间戳），支持通过 tz（Asia/China）转化成对应时区的时间 横向对比
-在时序数据库出现之前，存储时序数据这项领域一直被 MongoDB 所占据，在数据量不够高的情况下，InfluxDB 并不会比 MongoDB 或者 ElasticSearch 有更明显的优势 MySQL、Oracle 等，优点是具有 ACID 的特性，各方面能力都比较均衡。缺点是查询、插入和修改的性能都很一般。 基于 PostgreSQL 的 TimeScaleDB 高性能写入、高性能查询、低存储成本、支持海量时间线、弹性 纵向对比</description>
-    </item>
-    <item>
-      <title>基于hugo搭建blog</title>
-      <link>/post/blog%E6%90%AD%E5%BB%BA/</link>
-      <pubDate>Mon, 13 Nov 2023 16:29:02 +0000</pubDate>
-      <guid>/post/blog%E6%90%AD%E5%BB%BA/</guid>
-      <description>Step 1. 准备条件 git下载 hugo下载 Step 2. 搭建过程 环境准备
-下载hugo window版本 配置环境变量到Path 创建hugo项目 （zml_blog）
-hugo new site zml_blog cd zml_blog git init git拉取某个选定的theme皮肤
-这里选定blackburn（参考博客和UI） git submodule add git@github.com:yoshiharuyamashita/blackburn.git themes/blackburn theme文件复制并替换
-除了git.ignore外把D:\2 work software\hugo\my_blog\zml_blog\themes\blackburn下文件复制到根目录 zml_blog下并替换 复制theme的配置文件
-把config文件 D:\2 work software\hugo\my_blog\zml_blog\themes\blackburn\exampleSite内容复制到D:\2 work software\hugo\my_blog\zml_blog\content下 注意最终生效的配置文件为hugo.toml
-复制theme配置页面
-把page文件D:\2 work software\hugo\my_blog\zml_blog\themes\blackburn\exampleSite\content内容复制到toml.config 重新运行
-hugo server 编译生成public并上传到git
-D:\2 work software\hugo\my_blog\zml_blog\public下文件复制到D:\2 work software\hugo\my_blog\git_pages\zgjsdtzml.github.io下git add.git commit -m &amp;#39;xxx&amp;#39;git push add/update博客文章</description>
-    </item>
-    <item>
-      <title>Creating a New Theme</title>
-      <link>/post/creating-a-new-theme/</link>
-      <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
-      <guid>/post/creating-a-new-theme/</guid>
-      <description>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&amp;rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&amp;rsquo;t cover using CSS to style your theme.
-We&amp;rsquo;ll start with creating a new site with a very basic template.</description>
-    </item>
-    <item>
-      <title>Migrate to Hugo from Jekyll</title>
-      <link>/post/migrate-from-jekyll/</link>
-      <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
-      <guid>/post/migrate-from-jekyll/</guid>
-      <description>Move static content to static Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output. Hugo keeps all static content under static. You should therefore move it all there. With Jekyll, something that looked like
-▾ &amp;lt;root&amp;gt;/▾ images/logo.pngshould become
-▾ &amp;lt;root&amp;gt;/▾ static/▾ images/logo.pngAdditionally, you&amp;rsquo;ll want any files that should reside at the root (such as CNAME) to be moved to static.</description>
-    </item>
-    <item>
-      <title>(Hu)go Template Primer</title>
-      <link>/post/goisforlovers/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>/post/goisforlovers/</guid>
-      <description>Hugo uses the excellent go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in go templates.
-This document is a brief primer on using go templates.</description>
-    </item>
-    <item>
-      <title>Getting Started with Hugo</title>
-      <link>/post/hugoisforlovers/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      <guid>/post/hugoisforlovers/</guid>
-      <description>Step 1. Install Hugo Goto hugo releases and download the appropriate version for your os and architecture.
-Save it somewhere specific as we will be using it in the next step.
-More complete instructions are available at installing hugo
-Step 2. Build the Docs Hugo has its own example site which happens to also be the documentation site you are reading right now.
-Follow the following steps:
-Clone the hugo repository Go into the repo Run hugo in server mode and build the docs Open your browser to http://localhost:1313 Corresponding pseudo commands:</description>
     </item>
   </channel>
 </rss>

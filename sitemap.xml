@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>/post/cookiesession%E5%92%8Csso/</loc>
+    <lastmod>2023-11-15T20:21:00+00:00</lastmod>
+  </url><url>
     <loc>/post/influxdb/</loc>
     <lastmod>2023-11-14T16:00:02+00:00</lastmod>
   </url><url>
@@ -14,16 +17,19 @@
     <loc>/post/migrate-from-jekyll/</loc>
     <lastmod>2014-03-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/influxdb/</loc>
-    <lastmod>2023-11-14T16:00:02+00:00</lastmod>
-  </url><url>
     <loc>/post/</loc>
-    <lastmod>2023-11-14T16:00:02+00:00</lastmod>
+    <lastmod>2023-11-15T20:21:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/sso/</loc>
+    <lastmod>2023-11-15T20:21:00+00:00</lastmod>
   </url><url>
     <loc>/tags/</loc>
-    <lastmod>2023-11-14T16:00:02+00:00</lastmod>
+    <lastmod>2023-11-15T20:21:00+00:00</lastmod>
   </url><url>
     <loc>/</loc>
+    <lastmod>2023-11-15T20:21:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/influxdb/</loc>
     <lastmod>2023-11-14T16:00:02+00:00</lastmod>
   </url><url>
     <loc>/tags/hugo/</loc>

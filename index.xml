@@ -7,8 +7,24 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; 2023. All rights reserved.</copyright>
-    <lastBuildDate>Tue, 14 Nov 2023 16:00:02 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 15 Nov 2023 20:21:00 +0000</lastBuildDate>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>cookie、session和sso</title>
+      <link>/post/cookiesession%E5%92%8Csso/</link>
+      <pubDate>Wed, 15 Nov 2023 20:21:00 +0000</pubDate>
+      <guid>/post/cookiesession%E5%92%8Csso/</guid>
+      <description>1.引子 http的无状态 http的无状态，第一次访问和第二次访问是完全独立的，需要将不同的请求的行为串起来，那就让服务器和浏览器共同维护一个状态吧！这就是会话机制。（浏览器第一次请求服务器，服务器创建一个会话，并将会话的id作为响应的一部分发送给浏览器，浏览器存储会话id，并在后续第二次和第三次请求中带上会话id，服务器取得请求中的会话id就知道是不是同一个用户了，这个过程用下图说明，后续请求与第一次请求产生了关联） 服务器在内存中保存会话对象，浏览器怎么保存会话id呢？你可能会想到两种方式请求参数cookie将会话id作为每一个请求的参数，服务器接收请求自然能解析参数获得会话id，并借此判断是否来自同一会话，很明显，这种方式不靠谱。那就浏览器自己来维护这个会话id吧，每次发送http请求时浏览器自动发送会话id，cookie机制正好用来做这件事。cookie是浏览器用来存储少量数据的一种机制，数据以”key/value“形式存储，浏览器发送http请求时自动附带cookie信息tomcat会话机制当然也实现了cookie，访问tomcat服务器时，浏览器中可以看到一个名为“JSESSIONID”的cookie，这就是tomcat会话机制维护的会话id，使用了cookie的请求响应过程如下图：单系统登录解决方案的核心是cookie，cookie携带会话id（sessionId）在浏览器与服务器之间维护会话状态。但cookie是有限制的，这个限制就是cookie的域（通常对应网站的域名），浏览器发送http请求时会自动携带与该域匹配的cookie，而不是所有cookie既然这样，为什么不将web应用群中所有子系统的域名统一在一个顶级域名下，例如“*.baidu.com”，然后将它们的cookie域设置为“baidu.com”，这种做法理论上是可以的，甚至早期很多多系统登录就采用这种同域名共享cookie的方式。然而，可行并不代表好，共享cookie的方式存在众多局限。首先，应用群域名得统一；其次，应用群各系统使用的技术（至少是web服务器）要相同，不然cookie的key值（tomcat为JSESSIONID）不同，无法维持会话，共享cookie的方式是无法实现跨语言技术平台登录的，比如java、php、.net系统之间；第三，cookie本身不安全。共享 Cookie 的应用系统必须协商并统一使用相同的 Cookie 名称来标识用户会话。不能tomcat教JSESSIONID。php又叫xxxxx。或者用更安全和可行的方法是使用标准的身份验证和授权协议，如OAuth或OpenID Connect。这些协议定义了一致的方式来处理用户身份验证和会话管理，而不依赖于特定的 Cookie 名称。 传统验证用户信息用的是session和cookie这种组合，session存在服务器上，cookie存在客户端。cookie由服务器生成的，发给客户端存着，客户端每次请求就会携带cookie，服务器就会通过cookie的内容从而识别客户端的身份。session存在服务器，客户端的请求都会携带自己的身份信息，服务器就会通过session对比这个信息判断请求是否合法。但是session用户过多开销过大，也不能在多个服务器的服务端下使用，因为它存在服务器的内存中无法共享。 2. 会话机制 过程：
+1 服务端生成sessionId存储并返回
+2 客户端的each 请求默认传cookie(里面塞了sessionId)
+缺点：
+1 cookie无法解决 跨域、跨语言平台的问题（cookie有限制，不能跨域，只能发送域下匹配的所有cookie），因为cookie是跟浏览器以及各自的语言框架耦合集成的
+​ 2 服务端需要存储，传统的session存在服务器内存中、redis中，浪费内存https://zhuanlan.zhihu.com/p/135247813
+前面已经回答的挺透彻的了，补充一点概念辨析权当拾遗。SSO本质上属于一种需求。CAS（中央认证服务）本质上是一个框架，用于实现SSO的需求，但是并不提供具体的解决方案，只是规定了CAS Server和CAS Client的关系，其中中央认证服务器必须单点部署，而其他可以分布部署。OAuth2是一个协议，用于解决CAS框架下，客户资源安全的问题。通过中央认证服务器提供的Token来保证用户资源不会被窃取。同样SAML也是一个协议。JWT是一种具体的技术实现方案，通过在请求头部置入一个加密后的多段式Json（一般至少是三段：header, payload, signature）来保证token的可靠性。 3.单点登录（SSO） 简述： N个系统 只要其中1个登录，其他系统不需要重复认证登录了
+单点登录四大主流协议： CAS、OAuth、OpenID Connect、SAML方案
+单点登录有很多实现方案，最主流的还是基于CAS的方案。设计一套支持单点登录的鉴权认证系统，所有系统都基于一套鉴权系统进行登录，并且可以实现各个系统之间的互信和跳转。CAS架构的核心是需要搭建一个CAS Server，该服务独立部署，拥有独立三级域名，主要负责对用户的认证工作。他主要组成包括WEB前端提供登录页面，票据模块，认证模块。
+在 B/S 系统中，登录功能通常都是基于 Cookie 来实现的。当用户登录成功后，一般会将登录状态记录到 Session 中，或者是给用户签发一个 Token，无论哪一种方式，都需要在客户端保存一些信息（Session ID 或 Token ），并要求客户端在之后的每次请求中携带它们。在这样的场景下，使用 Cookie 无疑是最方便的，因此我们一般都会将 Session 的 ID 或 Token 保存到 Cookie 中，当服务端收到请求后，通过验证 Cookie 中的信息来判断用户是否登录 。单点登录（Single Sign On, SSO）是指在同一帐号平台下的多个应用系统中，用户只需登录一次，即可访问所有相互信任的应用系统。举例来说，百度贴吧和百度地图是百度公司旗下的两个不同的应用系统，如果用户在百度贴吧登录过之后，当他访问百度地图时无需再次登录，那么就说明百度贴吧和百度地图之间实现了单点登录。单点登录的本质就是在多个应用系统中共享登录状态。如果用户的登录状态是记录在 Session 中的，要实现共享登录状态，就要先共享 Session，比如可以将 Session 序列化到 Redis 中，让多个应用系统共享同一个 Redis，直接读取 Redis 来获取 Session。当然仅此是不够的，因为不同的应用系统有着不同的域名，尽管 Session 共享了，但是由于 Session ID 是往往保存在浏览器 Cookie 中的，因此存在作用域的限制，无法跨域名传递，也就是说当用户在 http://app1.</description>
+    </item>
     <item>
       <title>influxdb介绍</title>
       <link>/post/influxdb/</link>

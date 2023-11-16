@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="generator" content="Hugo 0.120.4">
 
-  <title>个人博客</title>
+  <title>sso &middot; 个人博客</title>
 
     
 
@@ -44,7 +44,7 @@
  
   
   <link rel="alternate" type="application/rss+xml" title="个人博客"
-    href='/index.xml' />
+    href='/tags/sso/index.xml' />
   
 
   
@@ -111,7 +111,7 @@
 
     
     <li class="pure-menu-item">
-      <a class="pure-menu-link" href='/index.xml'><i
+      <a class="pure-menu-link" href='/tags/sso/index.xml'><i
           class="fas fa-rss fa-fw"></i>RSS</a>
     </li>
     
@@ -211,8 +211,7 @@
 
 
 <div class="header">
-  <h1>个人博客</h1>
-  <h2>开源改变世界</h2>
+  <h1>sso</h1>
 </div>
 
 <div class="content">
@@ -269,293 +268,6 @@
 </article>
 
   
-    <article>
-  <header>
-    <h2><a href="/post/influxdb/">influxdb介绍</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>14 Nov 2023, 16:00</time>
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="tags/influxdb">influxdb</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  1. 介绍 git下载、hugo下载
-go写的，场景：适合 海量时许数据的插入和查询的场景（ 注意：删除和更新 支持很少）
-监控告警 iot物联网设备数据采集 官方有OSS单机开源版、官方集群版闭源收费，走商业路线。
-主流版本有1.X 和 2.X 1.X以1.8为主流
-InfluxDB 2.0 正式版本，该版本又分为两个系列，云模式的 InfluxDB Cloud 和独立部署的 InfluxDB OSS
-2.x的区别
-1整合了TICK 四个组件，分别对应Telegraf数据采集，InfluxDB数据存储，Chronograf WebUI数据可视化，Kapacitor 告警
-权限增强，支持token读写数据
-增加查询语言 Flux语法
-性能
-影响因素 本身机器硬件参数（32G内存 16核CPU标准版） 数据量、网络带宽 influxdb版本 1.8.10、mearsurement个数、field个数、tag个数 举例来说，基本的服务器配置 32G内存 16核，支持每s几W的写入 没什么问题，正常的查询在1-20ms之内
-网上测试参考8G内存 2核cpu 最大的吞吐量为每秒写入60万条数据（3个字段，1个索引） 读取性能 2ms/条环卫云项目参考 32G 16核cpu 1000Mbps的带宽平均吃 8G内存 600% cpu 每秒写入 2-3K条数据（50个字段、2-3个索引） 功能性
-HTTP协议的API 通过数据库本身的聚合函数 retention policy：数据存储策略（默认策略为autogen）InfluxDB没有删除数据操作，规定数据的保留时间达到清除数据的目的 底层时间戳为纳秒， 存储用的是utc时间戳（自1970年1月1日起的相对时间戳），支持通过 tz（Asia/China）转化成对应时区的时间 横向对比
-在时序数据库出现之前，存储时序数据这项领域一直被 MongoDB 所占据，在数据量不够高的情况下，InfluxDB 并不会比 MongoDB 或者 ElasticSearch 有更明显的优势 MySQL、Oracle 等，优点是具有 ACID 的特性，各方面能力都比较均衡。缺点是查询、插入和修改的性能都很一般。 基于 PostgreSQL 的 TimeScaleDB 高性能写入、高性能查询、低存储成本、支持海量时间线、弹性 纵向对比
-  </p>
-
-  
-  <footer>
-    <a href="/post/influxdb/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="/post/blog%E6%90%AD%E5%BB%BA/">基于hugo搭建blog</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>13 Nov 2023, 16:29</time>
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="tags/hugo">hugo</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  Step 1. 准备条件 git下载 hugo下载 Step 2. 搭建过程 环境准备
-下载hugo window版本 配置环境变量到Path 创建hugo项目 （zml_blog）
-hugo new site zml_blog cd zml_blog git init git拉取某个选定的theme皮肤
-这里选定blackburn（参考博客和UI） git submodule add git@github.com:yoshiharuyamashita/blackburn.git themes/blackburn theme文件复制并替换
-除了git.ignore外把D:\2 work software\hugo\my_blog\zml_blog\themes\blackburn下文件复制到根目录 zml_blog下并替换 复制theme的配置文件
-把config文件 D:\2 work software\hugo\my_blog\zml_blog\themes\blackburn\exampleSite内容复制到D:\2 work software\hugo\my_blog\zml_blog\content下 注意最终生效的配置文件为hugo.toml
-复制theme配置页面
-把page文件D:\2 work software\hugo\my_blog\zml_blog\themes\blackburn\exampleSite\content内容复制到toml.config 重新运行
-hugo server 编译生成public并上传到git
-D:\2 work software\hugo\my_blog\zml_blog\public下文件复制到D:\2 work software\hugo\my_blog\git_pages\zgjsdtzml.github.io下git add.git commit -m &#39;xxx&#39;git push add/update博客文章
-  </p>
-
-  
-  <footer>
-    <a href="/post/blog%E6%90%AD%E5%BB%BA/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="/post/creating-a-new-theme/">Creating a New Theme</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>28 Sep 2014, 00:00</time>
-  </div>
-
-  
-
-  
-
-  
-
-</div>
-
-  </header>
-
-  <p>
-  Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&rsquo;t cover using CSS to style your theme.
-We&rsquo;ll start with creating a new site with a very basic template.
-  </p>
-
-  
-  <footer>
-    <a href="/post/creating-a-new-theme/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="/post/migrate-from-jekyll/">Migrate to Hugo from Jekyll</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>10 Mar 2014, 00:00</time>
-  </div>
-
-  
-
-  
-
-  
-
-</div>
-
-  </header>
-
-  <p>
-  Move static content to static Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output. Hugo keeps all static content under static. You should therefore move it all there. With Jekyll, something that looked like
-▾ &lt;root&gt;/▾ images/logo.pngshould become
-▾ &lt;root&gt;/▾ static/▾ images/logo.pngAdditionally, you&rsquo;ll want any files that should reside at the root (such as CNAME) to be moved to static.
-  </p>
-
-  
-  <footer>
-    <a href="/post/migrate-from-jekyll/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="/post/goisforlovers/">(Hu)go Template Primer</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>02 Apr 2014, 00:00</time>
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="tags/go">go</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="tags/golang">golang</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="tags/templates">templates</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="tags/themes">themes</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="tags/development">development</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  Hugo uses the excellent go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in go templates.
-This document is a brief primer on using go templates.
-  </p>
-
-  
-  <footer>
-    <a href="/post/goisforlovers/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-    <article>
-  <header>
-    <h2><a href="/post/hugoisforlovers/">Getting Started with Hugo</a></h2>
-
-    <div class="post-meta">
-
-  <div>
-    <i class="fa fa-calendar fa-fw"></i>
-    <time>02 Apr 2014, 00:00</time>
-  </div>
-
-  
-
-  
-
-  
-  
-  
-  <div>
-    <i class="fa fa-tags fa-fw"></i>
-    
-      <a class="post-taxonomy-tag" href="tags/go">go</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="tags/golang">golang</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="tags/hugo">hugo</a>&nbsp;&#47;
-    
-      <a class="post-taxonomy-tag" href="tags/development">development</a>
-    
-  </div>
-  
-  
-
-</div>
-
-  </header>
-
-  <p>
-  Step 1. Install Hugo Goto hugo releases and download the appropriate version for your os and architecture.
-Save it somewhere specific as we will be using it in the next step.
-More complete instructions are available at installing hugo
-Step 2. Build the Docs Hugo has its own example site which happens to also be the documentation site you are reading right now.
-Follow the following steps:
-Clone the hugo repository Go into the repo Run hugo in server mode and build the docs Open your browser to http://localhost:1313 Corresponding pseudo commands:
-  </p>
-
-  
-  <footer>
-    <a href="/post/hugoisforlovers/">Read more<i class="fa fa-angle-double-right fa-fw"></i></a>
-  </footer>
-  
-</article>
-
-  
-
-  
-
-
 </div>
 
 </div>
@@ -588,4 +300,3 @@ Clone the hugo repository Go into the repo Run hugo in server mode and build the
 
 </body>
 </html>
-
